@@ -1,50 +1,59 @@
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
+import React from "react";
+import { motion } from "framer-motion";
+import { Mail, Github, Linkedin, Twitter } from "lucide-react";
 
 const Contact = () => {
   return (
-    <div
-      id="contact"
-      className=" bg-slate-700 text-white py-12 px-6 md:px-12 flex flex-col items-center rounded-t-lg shadow-lg"
-    >
-      <h2 className="text-3xl font-bold mb-6 text-center">Contact Me</h2>
-      <p className="mb-8 text-lg text-center">
-        Feel free to reach out to me through any of the platforms below or send
-        me an email.
-      </p>
-      <div className="flex flex-col md:flex-row items-center gap-6 mb-10">
-        <a
-          href="mailto:aqueel192@gmail.com"
-          className="px-6 py-3 bg-slate-500 hover:bg-slate-600 rounded-lg flex items-center gap-3 transition duration-300"
-        >
-          <FaEnvelope className="text-2xl" />
-          <span className="text-lg">Email Me</span>
-        </a>
-        <div className="flex gap-6">
+    <section id="contact" className="py-20">
+      <h2 className="text-3xl font-bold text-center mb-12">Contact Me</h2>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+        className="bg-gray-50 p-8 rounded-lg shadow-md max-w-2xl mx-auto"
+      >
+        <p className="text-center text-gray-600 mb-8">
+          Feel free to reach out for collaborations or just a friendly chat.
+        </p>
+        <div className="flex flex-col items-center gap-6">
           <a
-            href="https://www.github.com/sxxaq"
-            className="text-3xl hover:text-gray-400 transition duration-300"
+            href="mailto:aqueel192@gmail.com"
+            className="flex items-center gap-2 text-blue-600 hover:text-blue-800"
           >
-            <FaGithub />
+            <Mail size={20} />
+            aqueel192@gmail.com
           </a>
-          <a
-            href="https://www.linkedin.com/in/saalim-aqueel"
-            className="text-3xl hover:text-gray-400 transition duration-300"
-          >
-            <FaLinkedin />
-          </a>
-          <a
-            href="https://www.twitter.com/__0xSaalim"
-            className="text-3xl hover:text-gray-400 transition duration-300"
-          >
-            <FaTwitter />
-          </a>
+          <div className="flex gap-6">
+            <SocialLink
+              href="https://github.com/SxxAq"
+              icon={<Github size={24} />}
+            />
+            <SocialLink
+              href="https://linkedin.com/in/saalim-aqueel"
+              icon={<Linkedin size={24} />}
+            />
+            <SocialLink
+              href="https://twitter.com/__0xSaalim"
+              icon={<Twitter size={24} />}
+            />
+          </div>
         </div>
-      </div>
-      <p className="text-sm text-gray-400">
-        © {new Date().getFullYear()} Saalim Aqueel. All rights reserved.
-      </p>
-    </div>
+      </motion.div>
+    </section>
   );
 };
 
+const SocialLink = ({ href, icon }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-gray-600 hover:text-gray-900 transition-colors"
+  >
+    {icon}
+  </a>
+);
+
 export default Contact;
+

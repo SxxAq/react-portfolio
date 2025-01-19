@@ -1,68 +1,69 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import logo from "../assets/logo_1.png";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
-  const [bar, setBar] = useState(false);
-  const barHandler = () => setBar(!bar);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="md:h-[80px] w-full flex items-center justify-between px-8 rounded-b-lg md:px-10 py-6 text-gray-200 bg-[#0a192f]">
-      <div className="flex flex-shrink-0 items-center md:ml-20">
-        <a href="/">
-          <img src={logo} alt="Logo" style={{ width: "40px" }} />
-        </a>
+    <nav className="sticky top-0 z-50 bg-white border-b">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          <a href="#" className="text-xl font-bold text-gray-900">
+            Saalim Aqueel
+          </a>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            <NavLinks />
+          </div>
+
+          {/* Mobile Navigation Button */}
+          <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
+            {isOpen ? <X /> : <Menu />}
+          </button>
+        </div>
       </div>
-      <ul className=" hidden md:flex md:mr-10">
-        <a href="/">
-          <li>Home</li>
-        </a>
-        <a href="#skills">
-          <li>Skills</li>
-        </a>
-        <a href="#portfolio">
-          <li>Portfolio</li>
-        </a>
-        <a href="#work">
-          <li>Work</li>
-        </a>
-        <a href="#contact">
-          <li>Contact</li>
-        </a>
-      </ul>
-      {/* Mobile Screen  */}
-      <div onClick={barHandler} className="md:hidden text-lg z-40">
-        {!bar ? <FaBars /> : <FaTimes />}
-      </div>
-      <motion.ul
-        className={
-          !bar
-            ? "hidden"
-            : "z-30 fixed top-0 left-0 w-full h-screen bg-[#0a192f] flex flex-col justify-center items-center"
-        }
-        initial={{ opacity: 0, y: -50 }}
-        animate={bar ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
-        transition={{ duration: 0.3 }}
-      >
-        <a onClick={() => setBar(!bar)} href="/">
-          <li className="py-5 text-2xl">Home</li>
-        </a>
-        <a onClick={() => setBar(!bar)} href="#skills">
-          <li className="py-5 text-2xl">Skills</li>
-        </a>
-        <a onClick={() => setBar(!bar)} href="#portfolio">
-          <li className="py-5 text-2xl">Portfolio</li>
-        </a>
-        <a onClick={() => setBar(!bar)} href="#work">
-          <li className="py-5 text-2xl">Work</li>
-        </a>
-        <a onClick={() => setBar(!bar)} href="#contact">
-          <li className="py-5 text-2xl">Contact</li>
-        </a>
-      </motion.ul>
+
+      {/* Mobile Navigation Menu */}
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          className="md:hidden"
+        >
+          <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-b">
+            <NavLinks mobile onClick={() => setIsOpen(false)} />
+          </div>
+        </motion.div>
+      )}
     </nav>
   );
 };
 
+const NavLinks = ({ mobile, onClick }) => {
+  const links = ["Home", "Skills", "Projects", "Experience", "Contact"];
+
+  return (
+    <>
+      {links.map((link) => (
+        <a
+          key={link}
+          href={`#${link.toLowerCase()}`}
+          onClick={onClick}
+          className={`${
+            mobile
+              ? "block px-3 py-2 text-base font-medium hover:bg-gray-50"
+              : "text-gray-900 hover:text-gray-600"
+          } transition-colors`}
+        >
+          {link}
+        </a>
+      ))}
+    </>
+  );
+};
+
 export default Navbar;
+
