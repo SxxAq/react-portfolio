@@ -1,123 +1,86 @@
-import { TypeAnimation } from "react-type-animation";
+import React from "react";
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
-import profile from "../assets/profile.jpeg";
+import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { TypeAnimation } from "react-type-animation";
 
 const Hero = () => {
   return (
-    <div className="mt-16 max-w-[1200px] mx-auto relative px-4 md:px-0">
-      <div className="grid md:grid-cols-2 place-items-center gap-6">
+    <section id="home" className="py-20">
+      <div className="grid md:grid-cols-2 gap-8 items-center">
         <motion.div
-          initial={{ opacity: 0, y: -50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="text-left"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
         >
-          <motion.div
-            animate={{
-              scale: [1, 1.05, 1],
-              y: [0, -10, 0],
-            }}
-            transition={{
-              duration: 3,
-              ease: "easeInOut",
-              loop: Infinity,
-            }}
-          >
-            <TypeAnimation
-              sequence={[
-                "FullStack Developer",
-                1000,
-                "Open Source Contributor",
-                1000,
-                "AI Enthusiast",
-                1000,
-                "",
-                1000,
-              ]}
-              speed={50}
-              repeat={Infinity}
-              className="font-bold text-gray-600 text-xl md:text-4xl italic mb-4 whitespace-nowrap"
-            />
-          </motion.div>
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="font-bold text-gray-300 text-5xl md:text-7xl tracking-tight mb-4"
-          >
-            HI, I AM <br />
-            <span className="text-blue-400">SAALIM AQUEEL</span>
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 1 }}
-            className="text-gray-500 max-w-[300px] md:max-w-[500px] text-lg md:text-2xl mb-6 text-left md:text-left"
-          >
-            I am a passionate developer dedicated to building high-quality,
-            scalable web applications.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: -50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 1.5 }}
-            className="flex items-center gap-4 my-4 md:mb-0"
-          >
-            <a href="https://drive.google.com/file/d/1NzFB2wb1tn8qXlk5YPySDxEYPL3_IHuh/view?usp=sharing">
-              <motion.button
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0px 0px 8px rgba(0,0,0,0.3)",
-                }}
-                className="z-10 cursor-pointer font-bold text-gray-200 md:w-auto p-4 border rounded-xl border-blue-400"
-              >
-                Download CV
-              </motion.button>
+          <TypeAnimation
+            sequence={[
+              "Full Stack Developer",
+              2000,
+              "Web Developer",
+              2000,
+              "AI Enthusiast",
+              2000,
+            ]}
+            wrapper="h2"
+            speed={50}
+            repeat={Infinity}
+            className="text-xl text-gray-600 mb-4"
+          />
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Hi, I'm Saalim Aqueel
+          </h1>
+          <p className="text-lg text-gray-600 mb-8">
+            A passionate developer dedicated to building high-quality, scalable
+            web applications. Currently working as a Web Developer Intern at
+            Acceptare Technology Pvt Ltd.
+          </p>
+          <div className="flex items-center gap-4">
+            <a
+              href="/resume.pdf"
+              className="bg-gray-900 text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors"
+            >
+              Download CV
             </a>
-            <div className="flex gap-4 flex-row text-4xl md:text-6xl text-blue-400 z-20">
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                href="https://www.github.com/sxxaq"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaGithub />
-              </motion.a>
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                href="https://www.linkedin.com/in/saalim-aqueel/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaLinkedin />
-              </motion.a>
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                href="https://www.twitter.com/__0xSaalim"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaTwitter />
-              </motion.a>
+            <div className="flex gap-4">
+              <SocialLink href="https://github.com/SxxAq" icon={<Github />} />
+              <SocialLink
+                href="https://linkedin.com/in/saalim-aqueel"
+                icon={<Linkedin />}
+              />
+              <SocialLink
+                href="https://twitter.com/__0xSaalim"
+                icon={<Twitter />}
+              />
+              <SocialLink href="mailto:aqueel192@gmail.com" icon={<Mail />} />
             </div>
-          </motion.div>
+          </div>
         </motion.div>
-        <motion.img
-          src={profile}
-          className=" h-[34vh] w-[34vh] rounded-full mt-12 mb-8 md:ml-24"
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-        />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="hidden md:block"
+        >
+          <img
+            src="/placeholder.svg?height=400&width=400"
+            alt="Profile"
+            className="rounded-full w-80 h-80 mx-auto object-cover"
+          />
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
+
+const SocialLink = ({ href, icon }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-gray-600 hover:text-gray-900 transition-colors"
+  >
+    {icon}
+  </a>
+);
 
 export default Hero;

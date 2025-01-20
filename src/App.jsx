@@ -1,22 +1,23 @@
-import Contact from "./components/Contact";
-import Experience from "./components/Experience";
-import Hero from "./components/Hero";
+import React from "react";
 import Navbar from "./components/Navbar";
-import Portfolio from "./components/Portfolio";
+import Hero from "./components/Hero";
 import Skills from "./components/Skills";
+import Projects from "./components/Projects";
+import Experience from "./components/Experience";
+import Contact from "./components/Contact";
 
 function App() {
   return (
-    <>
+    <div className="bg-white min-h-screen">
       <Navbar />
-      <div className="p-4">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <Hero />
         <Skills />
-        <Portfolio />
+        <Projects />
         <Experience />
-      </div>
-      <Contact />
-    </>
+        <Contact />
+      </main>
+    </div>
   );
 }
 

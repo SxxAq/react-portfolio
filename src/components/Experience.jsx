@@ -1,47 +1,76 @@
-
+import React from "react";
 import { motion } from "framer-motion";
+import { Calendar, MapPin } from "lucide-react";
 
 const experiences = [
   {
-    company: "Social Winter of Code",
-    period: "Jan 2023 - Mar 2023",
-    description:
-      "Contributor to Frontend repositories during this open source event.",
+    title: "Web Developer Intern",
+    company: "Acceptare Technology Pvt Ltd",
+    location: "Remote",
+    period: "Nov 2024 – Jan 2025",
+    description: [
+      "Developed scalable web applications using modern web technologies",
+      "Implemented role-based access control and authentication",
+      "Optimized backend queries using Prisma and PostgreSQL",
+      "Designed and deployed responsive websites with CMS integration",
+      "Collaborated with teams using Agile methodologies",
+    ],
+    tech: "TypeScript, React, Node.js, Express, Prisma, PostgreSQL, Tailwind CSS",
   },
   {
-    company: "Hacktoberfest",
-    period: "Oct 2022 - Nov 2022",
-    description:
-      "Contributor to various repositories on frontend projects which includes bug fixes, new features, UI/UX improvements, etc.",
+    title: "Open Source Contributor",
+    company: "Social Winter of Code",
+    location: "Remote",
+    period: "Jan 2023 – Mar 2023",
+    description: [
+      "Contributed to Frontend repositories",
+      "Implemented new features and UI improvements",
+      "Collaborated with other developers through pull requests",
+    ],
   },
 ];
 
 const Experience = () => {
   return (
-    <div id="work" className="p-8 max-w-[600px] mx-auto">
-      <h1 className="text-4xl text-gray-200 font-bold text-center mb-12">
-        Experience
-      </h1>
-      <motion.div className="space-y-8" initial="hidden" animate="visible">
-        {experiences.map((experience, index) => (
+    <section id="experience" className="py-20">
+      <h2 className="text-3xl font-bold text-center mb-12">Experience</h2>
+      <div className="space-y-8">
+        {experiences.map((exp, index) => (
           <motion.div
             key={index}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.3 }}
-            transition={{ duration: 1 }}
-            className="border-2 border-teal-300 p-6 rounded-lg shadow-md
-                    hover:shadow-xl transition-shadow duration-300 bg-purple-800/10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="bg-gray-50 rounded-lg p-6 shadow-md"
           >
-            <h2 className="text-gray-100 text-2xl font-semibold">
-              {experience.company}
-            </h2>
-            <p className="text-gray-300">{experience.period}</p>
-            <p className="text-gray-400 mt-4">{experience.description}</p>
+            <h3 className="text-xl font-semibold text-gray-900">{exp.title}</h3>
+            <div className="flex flex-wrap gap-4 mt-2 text-gray-600">
+              <span className="flex items-center gap-1">
+                <Calendar className="w-4 h-4" />
+                {exp.period}
+              </span>
+              <span className="flex items-center gap-1">
+                <MapPin className="w-4 h-4" />
+                {exp.location}
+              </span>
+            </div>
+            <div className="mt-4">
+              <ul className="list-disc list-inside space-y-2 text-gray-600">
+                {exp.description.map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
+              </ul>
+            </div>
+            {exp.tech && (
+              <div className="mt-4 text-sm text-gray-600">
+                <strong>Tech Stack:</strong> {exp.tech}
+              </div>
+            )}
           </motion.div>
         ))}
-      </motion.div>
-    </div>
+      </div>
+    </section>
   );
 };
 
